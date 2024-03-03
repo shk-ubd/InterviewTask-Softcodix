@@ -50,17 +50,17 @@ function App() {
           <button
             className='bg-purple-500 py-2 px-6 rounded hover:bg-purple-400 m-4'
             onClick={() => {
-              if (character > 0) setCharacter(character - 1)
+              if (character > 1) setCharacter(character - 1)
             }} >Prev</button>
-          <p>{character} of {characterList.length}</p>
+          <p>{characterList.length ===0? 0:character+1} of {characterList.length}</p>
           <button
             className='bg-purple-500 py-2 px-6 rounded hover:bg-purple-400 m-4'
             onClick={() => {
-              if (character < characterList.length) setCharacter(character + 1)
+              if (character < characterList.length-1) setCharacter(character + 1)
             }}
           >Next</button>
         </div>
-        {error ? <div className=' bg-red-600'>{error}</div> : <></>}
+        {error ? <div className=' bg-red-600'>{error}</div> : <>
         {characterList.length > 0 ?
           <div
             onClick={() => setModal(true)}
@@ -77,7 +77,7 @@ function App() {
             </svg>
             <span className="sr-only">Loading...</span>
           </div> : <></>
-        }
+        }</>}
         {
           modal ?  <Modal data={characterList[character]} closeModal={closeModal} /> : <></>
         }
